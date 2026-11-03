@@ -28,6 +28,6 @@
         </activity>
         <meta-data
             android:name="flutterEmbedding"
-            android:version="2" />
+            android:value="2" />
     </application>
 </manifest>
