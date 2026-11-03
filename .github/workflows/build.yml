@@ -9,13 +9,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
           channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build apk --release
-      - uses: actions/upload-artifact@v4
+
+      - name: Generar estructura interna de Android
+        run: flutter create app_completa --platforms android
+
+      - name: Integrar nuestros códigos
+        run: |
+          cp pubspec.yaml app_completa/
+          cp lib/main.dart app_completa/lib/
+          cp android/app/AndroidManifest.xml app_completa/android/app/src/main/AndroidManifest.xml
+
+      - name: Descargar librerías y compilar
+        run: |
+          cd app_completa
+          flutter pub get
+          flutter build apk --release
+
+      - name: Entregar el APK listo
+        uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: app_completa/build/app/outputs/flutter-apk/app-release.apk
+          
