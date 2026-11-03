@@ -133,7 +133,7 @@ class _BluetoothScanScreenState extends State<BluetoothScanScreen> {
 
 class ControlScreen extends StatefulWidget {
   final BluetoothDevice device;
-  const ControlScreen({super.key, required: this.device});
+  const ControlScreen({super.key, required this.device});
 
   @override
   State<ControlScreen> createState() => _ControlScreenState();
@@ -241,7 +241,7 @@ class _ControlScreenState extends State<ControlScreen> {
             const SizedBox(height: 30),
             const Text(
               'Modos Preestablecidos',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w650),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 15),
             Wrap(
